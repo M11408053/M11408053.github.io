@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北味蕾大冒險 | 現代食尚部落格</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            900: '#7c2d12',
+                        },
+                        dark: {
+                            bg: '#0a0a0a',
+                            card: '#141414',
+                            border: '#262626'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'Noto Sans TC', 'sans-serif'],
+                        body: ['Noto Sans TC', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+            scroll-behavior: smooth;
+        }
+        .glass-morphism {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .image-reveal {
+            overflow: hidden;
+            border-radius: 1.5rem;
+        }
+        .image-reveal img {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .image-reveal:hover img {
+            transform: scale(1.05);
+        }
+        .scroll-indicator {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, #f97316, transparent);
+        }
+        ::selection {
+            background: #f97316;
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-body antialiased">
+
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 z-50 bg-dark-border">
+        <div id="progress-bar" class="h-full bg-brand-500 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- Navigation Overlay (Fixed) -->
+    <nav class="fixed top-0 w-full z-40 px-6 py-8 flex justify-between items-center pointer-events-none">
+        <div class="pointer-events-auto bg-dark-card/80 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md">
+            <span class="font-display font-extrabold tracking-tighter text-xl gradient-text">M11408053</span>
+        </div>
+        <div class="pointer-events-auto flex gap-4">
+            <div class="bg-dark-card/80 p-2 rounded-full border border-white/10 backdrop-blur-md cursor-pointer hover:bg-brand-500 transition-colors">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden px-6">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-orange-900/30 rounded-full blur-[100px] animate-float"></div>
+
+        <div class="z-10 max-w-5xl w-full">
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-500 text-sm font-semibold tracking-wider uppercase">
+                Culinary Journey • Taipei
+            </div>
+            <h1 class="font-display text-5xl md:text-8xl font-black mb-8 leading-[1.1] tracking-tight">
+                台北味蕾大冒險：<br/>
+                <span class="gradient-text">從街頭到星級</span>的極致吃貨指南
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mb-12 leading-relaxed">
+                台北並不急著展現宏偉的摩天大樓，但它絕對有一套完整的計畫，讓任何踏入此地的旅人「沒打算瘦著離開」。
+            </p>
+            
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-8">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-600 to-orange-400 flex items-center justify-center text-white font-bold">M</div>
+                    <div>
+                        <p class="text-sm text-gray-500">Author</p>
+                        <p class="text-white font-semibold">M11408053</p>
+                    </div>
+                </div>
+                <div class="hidden md:block w-px h-10 bg-dark-border"></div>
+                <div>
+                    <p class="text-sm text-gray-500">Read Time</p>
+                    <p class="text-white font-semibold">8 Min Read</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-20 flex flex-col items-center">
+            <p class="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4 animate-bounce">Scroll to explore</p>
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 pb-32">
+        
+        <!-- Featured Banner -->
+        <div class="relative w-full rounded-[2.5rem] overflow-hidden shadow-2xl shadow-brand-900/20 mb-24 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent z-10 opacity-60"></div>
+            <img src='https://opal.google/board/blobs/7bcdfbec-bc04-47a4-b320-cf5bbc05ccb2' alt='media_1' class="w-full h-[70vh] object-cover transition-transform duration-1000 group-hover:scale-110" />
+            <div class="absolute bottom-10 left-10 z-20">
+                <span class="glass-morphism px-6 py-3 rounded-2xl text-white font-medium flex items-center gap-3">
+                    <span class="w-2 h-2 bg-brand-500 rounded-full animate-ping"></span>
+                    台北當前最熱門話題
+                </span>
+            </div>
+        </div>
+
+        <!-- Introduction Bento -->
+        <div class="bento-grid mb-24">
+            <div class="col-span-12 md:col-span-8 glass-morphism p-10 rounded-[2rem] flex flex-col justify-center">
+                <h2 class="text-3xl font-bold mb-6 text-white">美味的野性演化</h2>
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    作為一個長期觀察城市脈絡的思考者，我常在想，台北美食之所以迷人，並不單純是因為「好吃」，而是在於它那種近乎野性的<strong class="text-brand-500">多樣性</strong>與<strong class="text-brand-500">跨文化融合</strong>。這裡是一個巨大的美食終極戰場，每一條巷弄都在上演著激烈的味覺演化論。
+                </p>
+            </div>
+            <div class="col-span-12 md:col-span-4 bg-brand-600 rounded-[2rem] p-10 flex flex-col justify-between overflow-hidden relative group">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl transition-all duration-500 group-hover:scale-150"></div>
+                <h3 class="text-6xl font-black text-white/20 font-display">CITY<br/>SOUL</h3>
+                <p class="text-white font-medium relative z-10">
+                    每一口食物，都是台北城市靈魂的碎片，編織成這座城市的味覺地圖。
+                </p>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+            
+            <!-- Sidebar Navigation (Desktop) -->
+            <aside class="hidden md:block md:col-span-3 sticky top-32 h-fit">
+                <div class="flex flex-col gap-6 text-sm font-semibold text-gray-500 uppercase tracking-widest">
+                    <a href="#section1" class="hover:text-brand-500 transition-colors flex items-center gap-3 active-nav group"><span class="w-8 h-[1px] bg-gray-700 group-hover:bg-brand-500"></span> 01. 胃口時光機</a>
+                    <a href="#section2" class="hover:text-brand-500 transition-colors flex items-center gap-3 group"><span class="w-8 h-[1px] bg-gray-700 group-hover:bg-brand-500"></span> 02. 社群時代</a>
+                    <a href="#section3" class="hover:text-brand-500 transition-colors flex items-center gap-3 group"><span class="w-8 h-[1px] bg-gray-700 group-hover:bg-brand-500"></span> 03. 背後的憂慮</a>
+                    <a href="#section4" class="hover:text-brand-500 transition-colors flex items-center gap-3 group"><span class="w-8 h-[1px] bg-gray-700 group-hover:bg-brand-500"></span> 04. 未來展望</a>
+                </div>
+            </aside>
+
+            <!-- Article Body -->
+            <div class="md:col-span-9 space-y-24">
+                
+                <!-- Section 1 -->
+                <section id="section1" class="scroll-mt-32">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="text-5xl font-display font-black text-white/10">01</span>
+                        <div class="h-px flex-grow bg-dark-border"></div>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-8 text-white">⏳ 第一站：胃口時光機——台北美食是怎麼變強的？</h2>
+                    <div class="prose prose-invert prose-lg max-w-none text-gray-400 leading-relaxed space-y-6">
+                        <p>台北的味道並非橫空出世，而是一部縮影式的移民史與現代化敘事。</p>
+                        <p>如果我們回到清末的大稻埕，那時的商賈巨賈在豪門宴席間，一邊談著茶葉生意，一邊形塑了<span class="text-white font-semibold">「精緻台菜」</span>與<span class="text-white font-semibold">「酒家菜」</span>的雛型。隨後的日治時期，則為這座城市注入了職人靈魂。你可以在西門町的老派西餐廳或是深夜的日本居酒屋裡，看見那種對食材處理的嚴謹態度留下的印記。</p>
+                        <div class="bg-dark-card border border-dark-border p-8 rounded-3xl my-10 relative">
+                            <div class="absolute -top-4 -left-4 w-12 h-12 bg-brand-500 rounded-2xl flex items-center justify-center shadow-lg">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <p class="italic text-brand-100 mb-0">
+                                最戲劇性的轉折莫過於 1949 年。那一場美味的大遷徙，將中國大江南北的省籍菜系全數匯聚於此。眷村裡的紅燒牛肉麵、早晨騰著熱氣的豆漿油條，原本是思鄉的慰藉，卻在此刻與台灣在地食材發生了奇妙的化學反應。
+                            </p>
+                        </div>
+                        <p>到了 80 年代，珍珠奶茶與西式甜點的崛起，則宣告了全球化浪潮的逆襲。台北的美食基因，就這樣在歷史的層層堆疊下，變得無比強大。</p>
+                    </div>
+                </section>
+
+                <!-- Section 2 -->
+                <section id="section2" class="scroll-mt-32">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="text-5xl font-display font-black text-white/10">02</span>
+                        <div class="h-px flex-grow bg-dark-border"></div>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-8 text-white">🔥 第二站：現在大家都怎麼吃？社群時代的台北食尚</h2>
+                    <div class="prose prose-invert prose-lg max-w-none text-gray-400 leading-relaxed space-y-6">
+                        <p>走在今天的台北街頭，你會發現吃東西這件事，已經從單純的生理滿足，轉向一種「文化消費」。</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+                            <div class="p-6 bg-dark-card rounded-2xl border border-white/5 hover:border-brand-500/50 transition-colors">
+                                <h4 class="text-white font-bold mb-2">赤峰街 (Chifeng St.)</h4>
+                                <p class="text-sm">文青的心頭好，日式老屋與精品咖啡的時光交錯。</p>
+                            </div>
+                            <div class="p-6 bg-dark-card rounded-2xl border border-white/5 hover:border-brand-500/50 transition-colors">
+                                <h4 class="text-white font-bold mb-2">信義區 (Xinyi District)</h4>
+                                <p class="text-sm">奢華 Buffet 與國際星級名店的格鬥場，極致繁華。</p>
+                            </div>
+                        </div>
+                        <p>有趣的是，吃貨的認證指標也變了。過去我們講究「CP 值」（性價比），現代人則更看重「米其林指南」的認證、主廚的神格化故事，以及最關鍵的——<span class="text-brand-500 font-bold">「視覺系打卡度」</span>。</p>
+                        <blockquote class="border-l-4 border-brand-500 pl-6 my-10 text-2xl font-display font-medium text-white italic">
+                            "當「相機先吃」成為社交常態，食物的內在與外在正在經歷一場前所未有的平衡戰。"
+                        </blockquote>
+                    </div>
+                </section>
+
+                <!-- Section 3 -->
+                <section id="section3" class="scroll-mt-32">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="text-5xl font-display font-black text-white/10">03</span>
+                        <div class="h-px flex-grow bg-dark-border"></div>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-8 text-white">🤔 第三站：美味背後的小憂鬱——我們面臨的挑戰</h2>
+                    <div class="prose prose-invert prose-lg max-w-none text-gray-400 leading-relaxed space-y-8">
+                        <div class="flex flex-col md:flex-row gap-8 items-start">
+                            <div class="flex-1">
+                                <p>然而，在享用美食之餘，我也看見了幾抹令人不安的灰影。首先是<span class="text-white underline decoration-brand-500 decoration-2 underline-offset-4">庶民感消失</span>。當路邊攤的雞排價格突破百元大關，平民美食是否正逐漸變成一種奢侈？</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="glass-morphism p-8 rounded-3xl">
+                                <h4 class="text-brand-500 font-bold mb-4 flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"></path></svg>
+                                    集體記憶斷裂
+                                </h4>
+                                <p class="text-sm">通膨與租金壓力擠壓老味道生存空間，許多老牌餐廳熄燈，這不僅是商圈凋零，更是記憶的斷裂。</p>
+                            </div>
+                            <div class="glass-morphism p-8 rounded-3xl">
+                                <h4 class="text-brand-500 font-bold mb-4 flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"></path></svg>
+                                    流量美食陷阱
+                                </h4>
+                                <p class="text-sm">當追求視覺效果成為唯一目標，還有多少人願意花上數十小時熬製湯頭？商業化是必經的代價嗎？</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4 -->
+                <section id="section4" class="scroll-mt-32">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="text-5xl font-display font-black text-white/10">04</span>
+                        <div class="h-px flex-grow bg-dark-border"></div>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-8 text-white">🚀 第四站：未來食堂預備起！AI 與綠色浪潮來襲</h2>
+                    <div class="prose prose-invert prose-lg max-w-none text-gray-400 leading-relaxed space-y-6">
+                        <p>展望未來，台北的餐飲景觀將迎來一場新的革命。科技化與 AI 已經走入日常。機器人主廚、智慧點餐系統正逐步解決缺工危機。</p>
+                        <div class="flex flex-wrap gap-4 my-8">
+                            <span class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-white text-sm">#米其林綠星</span>
+                            <span class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-white text-sm">#永續餐飲</span>
+                            <span class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-white text-sm">#在地食材</span>
+                            <span class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-white text-sm">#AI主廚</span>
+                        </div>
+                        <p>我最期待的，是台灣特有元素（如馬告、原產可可）如何進一步與國際頂尖技法融合。當這些在地珍寶遇上法式低溫烹調，那種超乎想像的跨國驚喜，正是台北未來最令人興奮的看點。</p>
+                    </div>
+                </section>
+
+                <!-- Conclusion -->
+                <div class="relative p-12 rounded-[3rem] bg-gradient-to-br from-brand-600 to-brand-900 overflow-hidden text-center">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                    <h3 class="text-3xl md:text-5xl font-black text-white mb-6 relative z-10">台北，永遠歡迎你的胃</h3>
+                    <p class="text-white/80 text-lg mb-10 relative z-10 max-w-2xl mx-auto">
+                        無論時代如何遷移、科技如何翻新，台北這座城市對「好味道」的偏執始終如一。
+                    </p>
+                    <button class="relative z-10 bg-white text-brand-600 px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-xl">
+                        準備好下一頓吃什麼了嗎？
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Progress Bar logic
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            
+            // Sidebar Active States
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll("aside a");
+            
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+                
+                if(top >= offset && top < offset + height) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-brand-500');
+                        if(link.getAttribute('href') == '#' + id) {
+                            link.classList.add('text-brand-500');
+                        }
+                    });
+                }
+            });
+        };
+
+        // Smooth reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('translate-y-10');
+                    entry.target.classList.remove('opacity-0');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
